@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card when there are items renders the items expected 1`] = `
+<a
+  className="jsx-3325034044"
+  href="url"
+  rel="nofollow"
+  target="blank"
+>
+  <span
+    className="jsx-3325034044"
+    style={
+      Object {
+        "backgroundImage": "url(\\"imageUrl\\")",
+      }
+    }
+  />
+  <ul
+    className="jsx-3325034044"
+  >
+    <li
+      className="jsx-3325034044"
+    >
+      <strong
+        className="jsx-3325034044"
+      >
+        price
+         
+      </strong>
+    </li>
+    <li
+      className="jsx-3325034044"
+    >
+      description
+    </li>
+    <li
+      className="jsx-3325034044 address"
+    >
+      address
+    </li>
+  </ul>
+</a>
+`;
