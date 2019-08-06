@@ -34,9 +34,13 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "export": "npm run build && next export",
     "lint": "npx eslint .",
     "start": "next start",
-    "test": "npx jest"
+    "test": "npx jest",
+    "google:clean": "gsutil -m rm -r gs://realstate.mintitmedia.com/*",
+    "google:upload": "gsutil -m cp -r ./out/. gs://realstate.mintitmedia.com/",
+    "deploy": "npm run export && npm run google:clean && npm run google:upload"
   },
   "jest": {
     "setupFilesAfterEnv": [
