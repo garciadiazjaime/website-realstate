@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import LazyLoad from "react-lazyload";
 
 function Card({ data, formatter }) {
   return (
     <a key={data._id} href={data.url} target="blank" rel="nofollow">
-      <span style={{ backgroundImage: `url("${data.image}")` }}></span>
+      <LazyLoad height={250}>
+        <span style={{ backgroundImage: `url("${data.image}")` }}></span>
+      </LazyLoad>
       <ul>
         <li>
           <strong>

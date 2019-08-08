@@ -10,10 +10,12 @@ import ListItem from "../components/listItems";
 
 const isBrowser = typeof window !== "undefined";
 
-const API_URL =
+const API_URL = `http://${
+  // eslint-disable-next-line no-undef
   process && process.env.NODE_ENV !== "production"
-    ? "http://0.0.0.0:3030/real-state/place"
-    : "http://api.mintitmedia.com/real-state/place";
+    ? "0.0.0.0:3030"
+    : "api.mintitmedia.com"
+}/real-state/place`;
 
 const client = new ApolloClient({
   link: new HttpLink({

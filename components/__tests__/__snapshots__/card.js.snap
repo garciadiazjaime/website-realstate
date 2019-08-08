@@ -7,11 +7,11 @@ exports[`Card when there are items renders the items expected 1`] = `
   rel="nofollow"
   target="blank"
 >
-  <span
-    className="jsx-3325034044"
+  <div
+    className="lazyload-placeholder"
     style={
       Object {
-        "backgroundImage": "url(\\"imageUrl\\")",
+        "height": 250,
       }
     }
   />
