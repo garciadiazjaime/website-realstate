@@ -33,7 +33,7 @@
   },
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "NODE_ENV=production next build",
     "export": "npm run build && next export",
     "lint": "npx eslint .",
     "start": "next start",

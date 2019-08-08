@@ -10,9 +10,14 @@ import ListItem from "../components/listItems";
 
 const isBrowser = typeof window !== "undefined";
 
+const API_URL =
+  process && process.env.NODE_ENV !== "production"
+    ? "http://0.0.0.0:3030/real-state/place"
+    : "http://api.mintitmedia.com/real-state/place";
+
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: "http://localhost:3030/real-state",
+    uri: API_URL,
     fetch: !isBrowser && fetch
   }),
   cache: new InMemoryCache()
@@ -32,7 +37,7 @@ const query = gql`
       address
       city
       source
-      created
+      updatedAt
     }
   }
 `;
