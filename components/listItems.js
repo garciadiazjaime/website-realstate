@@ -58,18 +58,11 @@ function ListItems({ data }) {
       ))}
       <style jsx>{`
         div {
+          background: #e8e9ea;
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
           justify-content: space-evenly;
-        }
-      `}</style>
-      <style global jsx>{`
-        body {
-          margin: 0px;
-          background: #e8e9ea;
-          font-family: PostGrotesk, system, -apple-system, Roboto, Segoe UI Bold,
-            Arial, sans-serif;
         }
       `}</style>
     </div>

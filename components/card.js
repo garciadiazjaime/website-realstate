@@ -6,7 +6,7 @@ function Card({ data, formatter }) {
   return (
     <a key={data._id} href={data.url} target="blank" rel="nofollow">
       <LazyLoad height={250}>
-        <span style={{ backgroundImage: `url("${data.image}")` }}></span>
+        <span style={{ backgroundImage: `url("${data.images[0]}")` }}></span>
       </LazyLoad>
       <ul>
         <li>
@@ -21,7 +21,7 @@ function Card({ data, formatter }) {
         a {
           width: 100%;
           max-width: 420px;
-          margin-bottom: 12px;
+          margin: 6px;
           background: white;
           position: relative;
           text-decoration: none;
