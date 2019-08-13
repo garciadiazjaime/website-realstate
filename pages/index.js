@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 
 import Header from "../components/header";
 import ListItem from "../components/listItems";
@@ -80,6 +81,10 @@ class Home extends React.Component {
     const { data } = this.state;
     return (
       <div>
+        <Head>
+          <title>Propiedades a la Venta en Tijuana, México</title>
+          <link rel="icon" type="image/png" href="/static/favicon.png" />
+        </Head>
         <Header />
         <Filters search={this.search} />
         <ListItem data={data} />
