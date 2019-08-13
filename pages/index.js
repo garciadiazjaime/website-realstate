@@ -5,11 +5,11 @@ import Header from "../components/header";
 import ListItem from "../components/listItems";
 import Filters from "../components/filters";
 
-const isBrowser = typeof window !== "undefined";
-
 const API_URL = `http://${
   // eslint-disable-next-line no-undef
-  isBrowser !== "production" ? "0.0.0.0:3030" : "api.mintitmedia.com"
+  process && process.env.NODE_ENV !== "production"
+    ? "0.0.0.0:3030"
+    : "api.mintitmedia.com"
 }/real-state/place`;
 
 function getPlacesQuery(filters = {}) {

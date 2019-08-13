@@ -5,6 +5,14 @@
 	import Card from './Card.svelte';
 	import Filters from './Filters.svelte';	
 
+	const API_URL = `http://${
+  // eslint-disable-next-line no-undef
+  ENVIRONMENT !== "production"
+    ? "0.0.0.0:3030"
+    : "api.mintitmedia.com"
+}/real-state/place`;
+// const API_URL = 'http://0.0.0.0:3030/real-state/place'
+
 	function getPlacesQuery(filters = {}) {
 		const { minPrice, maxPrice, keyword } = filters;
 
@@ -38,7 +46,7 @@
 			query: getPlacesQuery(filters)
 		}
 
-		const result = await fetch('http://localhost:3030/real-state/place', {
+		const result = await fetch(API_URL, {
 			method: 'POST',
 			body: JSON.stringify(payload),
 			headers:{
