@@ -1,23 +1,14 @@
 <script>
-	import ApolloClient from 'apollo-boost';
-	import { InMemoryCache } from 'apollo-cache-inmemory';
-	import { query } from 'svelte-apollo';
-	import gql from 'graphql-tag';
-	
+	import { onMount } from 'svelte';
+
 	import Header from './Header.svelte';
 	import Card from './Card.svelte';
 	import Filters from './Filters.svelte';	
 
-	const cache = new InMemoryCache({
-		addTypename: false
-	});
-
-  const client = new ApolloClient({ uri: 'http://localhost:3030/real-state/place' , cache });
-
 	function getPlacesQuery(filters = {}) {
 		const { minPrice, maxPrice, keyword } = filters;
 
-		return gql`
+		return `
 				query RealState {
 					places(
 						first: 100
@@ -38,17 +29,37 @@
 
 	const filters = JSON.parse(
     window.localStorage.getItem('filters') || '{}'
-  );
+	);
 
-	let places = query(client, { query: getPlacesQuery(filters) });
+	let places = []
+
+	async function getPlaces(filters) {
+		const payload = {
+			query: getPlacesQuery(filters)
+		}
+
+		const result = await fetch('http://localhost:3030/real-state/place', {
+			method: 'POST',
+			body: JSON.stringify(payload),
+			headers:{
+				'Content-Type': 'application/json'
+			}
+		})
+		const { data: { places } } = await result.json()
+
+		return places
+	}
+
+	onMount(async () => {
+		places = await getPlaces()
+	})
 	
 	async function search(event) {
 		const { detail: filters } = event
 
 		window.localStorage.setItem('filters', JSON.stringify(filters));
-    places = await query(client, {
-      query: getPlacesQuery(filters)
-    });
+
+		places = await getPlaces(filters)
 	}
 
 	const formatter = new Intl.NumberFormat('en-US', {
@@ -66,17 +77,9 @@
 <Filters on:filters={search} {...filters} />
 
 <ul>
-{#await $places}
-	<li>Buscando...</li>
-{:then result}
-	{#each result.data.places as place}
+	{#each places as place}
 		<li><Card {...place} formatter={formatter} /></li>
-	{:else}
-		<li>No se encontraron lugares :(</li>
 	{/each}
-{:catch error}
-	{error}
-{/await}
 </ul>
 
 <style>

@@ -12,22 +12,16 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
-    "apollo-cache-inmemory": "^1.6.2",
-    "apollo-client": "^2.6.3",
-    "apollo-link": "^1.2.12",
-    "apollo-link-http": "^1.5.15",
-    "apollo-link-ws": "^1.0.18",
-    "apollo-utilities": "^1.3.2",
-    "graphql-tag": "^2.10.1",
-    "react-lazyload": "^2.6.2",
-    "sirv-cli": "^0.4.4",
-    "svelte-apollo": "^0.3.0"
+    "sirv-cli": "^0.4.4"
   },
   "scripts": {
     "build": "rollup -c",
     "autobuild": "rollup -c -w",
     "dev": "run-p start:dev autobuild",
     "start": "sirv public --single",
-    "start:dev": "sirv public --single --dev"
+    "start:dev": "sirv public --single --dev",
+    "google:clean": "gsutil -m rm -r gs://realstate2.mintitmedia.com/*",
+    "google:upload": "gsutil -m cp -r ./public/. gs://realstate2.mintitmedia.com/",
+    "deploy": "npm run build && npm run google:clean && npm run google:upload"
   }
 }
