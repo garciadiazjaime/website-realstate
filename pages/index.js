@@ -1,11 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import gql from "graphql-tag";
-import { ApolloClient } from "apollo-client";
-import { HttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import fetch from "isomorphic-unfetch";
-import { ApolloProvider, withApollo } from "react-apollo";
 
 import Header from "../components/header";
 import ListItem from "../components/listItems";
@@ -15,23 +8,13 @@ const isBrowser = typeof window !== "undefined";
 
 const API_URL = `http://${
   // eslint-disable-next-line no-undef
-  process && process.env.NODE_ENV !== "production"
-    ? "0.0.0.0:3030"
-    : "api.mintitmedia.com"
+  isBrowser !== "production" ? "0.0.0.0:3030" : "api.mintitmedia.com"
 }/real-state/place`;
-
-const client = new ApolloClient({
-  link: new HttpLink({
-    uri: API_URL,
-    fetch: !isBrowser && fetch
-  }),
-  cache: new InMemoryCache()
-});
 
 function getPlacesQuery(filters = {}) {
   const { minPrice, maxPrice, keyword } = filters;
 
-  return gql`
+  return `
       query RealState {
         places(
           first: 100
@@ -43,17 +26,31 @@ function getPlacesQuery(filters = {}) {
           price
           currency
           description
-          latitude
-          longitude
           images
           url
           address
-          city
-          source
-          updatedAt
         }
       }
     `;
+}
+
+async function getPlaces(filters) {
+  const payload = {
+    query: getPlacesQuery(filters)
+  };
+
+  const result = await fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+  const {
+    data: { places }
+  } = await result.json();
+
+  return places;
 }
 
 class Home extends React.Component {
@@ -65,20 +62,17 @@ class Home extends React.Component {
 
   async componentDidMount() {
     const filters = JSON.parse(window.localStorage.getItem("filters") || "{}");
-    const result = await this.props.client.query({
-      query: getPlacesQuery(filters)
-    });
+    const places = await getPlaces(filters);
+
     this.setState({
-      data: result.data.places
+      data: places
     });
   }
 
   async search(filters) {
-    const result = await this.props.client.query({
-      query: getPlacesQuery(filters)
-    });
+    const places = await getPlaces(filters);
     this.setState({
-      data: result.data.places
+      data: places
     });
   }
 
@@ -101,18 +95,4 @@ class Home extends React.Component {
   }
 }
 
-Home.propTypes = {
-  client: PropTypes.object.isRequired
-};
-
-const HomeWrapper = withApollo(Home);
-
-function HomeHOC() {
-  return (
-    <ApolloProvider client={client}>
-      <HomeWrapper />
-    </ApolloProvider>
-  );
-}
-
-export default HomeHOC;
+export default Home;
