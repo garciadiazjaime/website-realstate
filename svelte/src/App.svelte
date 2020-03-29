@@ -10,16 +10,17 @@
   ENVIRONMENT !== "production"
     ? "0.0.0.0:3030"
     : "api.mintitmedia.com"
-}/real-state/place`;
+}/real-state/graphiql`;
 // const API_URL = 'http://0.0.0.0:3030/real-state/place'
 
 	function getPlacesQuery(filters = {}) {
-		const { minPrice, maxPrice, keyword } = filters;
+		const { minPrice, maxPrice, keyword, city = 'tijuana' } = filters;
 
 		return `
 				query RealState {
 					places(
 						first: 100
+						city: "${city}"
 						${minPrice ? `minPrice: ${minPrice}` : ""}
 						${maxPrice ? `maxPrice: ${maxPrice}` : ""}
 						${keyword ? `keyword: "${keyword}"` : ""}

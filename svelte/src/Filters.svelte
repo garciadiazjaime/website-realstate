@@ -4,6 +4,7 @@
   export let minPrice = '';
   export let maxPrice = '';
   export let keyword = '';
+  export let city = 'tijuana'
 
   const dispatch = createEventDispatcher();
 
@@ -13,7 +14,8 @@
     const filters = {
       minPrice,
       maxPrice,
-      keyword
+      keyword,
+      city
     }
 
     dispatch('filters', filters);
@@ -38,6 +40,12 @@
       <span>Término</span>
       <input
         bind:value={keyword}
+      />
+    </li>
+    <li>
+      <span>Ciudad</span>
+      <input
+        bind:value={city}
       />
     </li>
     <li>
