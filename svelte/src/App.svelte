@@ -11,7 +11,6 @@
     ? "0.0.0.0:3030"
     : "api.mintitmedia.com"
 }/real-state/graphiql`;
-// const API_URL = 'http://0.0.0.0:3030/real-state/place'
 
 	function getPlacesQuery(filters = {}) {
 		const { minPrice, maxPrice, keyword, city = 'tijuana' } = filters;
@@ -36,9 +35,7 @@
 			`;
 	}
 
-	const filters = JSON.parse(
-    window.localStorage.getItem('filters') || '{}'
-	);
+	let filters = {}
 
 	let places = []
 
@@ -60,7 +57,8 @@
 	}
 
 	onMount(async () => {
-		places = await getPlaces()
+		filters = JSON.parse(window.localStorage.getItem('filters') || '{}');
+		places = await getPlaces(filters)
 	})
 	
 	async function search(event) {
