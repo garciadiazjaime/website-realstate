@@ -55,6 +55,13 @@
 	}
 
 	@media (max-width: 480px) {
+		h1 {
+			padding: 230px 12px;
+			margin: 0;
+			background-color: #000;
+			color: #FFF;
+			text-align: center;
+		}
 		.item {
 			display: block;
 		}
@@ -72,6 +79,8 @@
 <svelte:head>
 	<title>Real State | Tijuana</title>
 </svelte:head>
+
+<h1>Comprar Casa en Tijuana</h1>
 
 {#each places as place}
 <div class="item"

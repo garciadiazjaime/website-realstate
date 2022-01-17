@@ -11,11 +11,13 @@
 		background-color: white;
 		margin: 0 auto;
 		box-sizing: border-box;
+		padding: 12px;
 	}
 
 	@media (max-width: 480px) {
 		main {
 			font-size: 1.2em;
+			padding: 0;
 		}
 	}
 </style>
