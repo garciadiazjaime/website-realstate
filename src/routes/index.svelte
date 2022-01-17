@@ -37,6 +37,7 @@
 
 	.image-container {
 		width: 400px;
+		overflow: hidden;
 	}
 	.image {
 		width: 400px;
@@ -44,6 +45,10 @@
 		display: block;
 		background-repeat: no-repeat;
 		background-size: cover;
+		transition: transform .2s;
+	}
+	.image:hover {
+		transform: scale(1.1);
 	}
 
 	.content {
