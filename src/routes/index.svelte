@@ -44,5 +44,6 @@
 	<div>{place.price} {place.currency}</div>
 	<a href={place.url} target="_blank">ver</a>
 	<div>{place.source}</div>
+	<div>{place.createdAt}</div>
 </div>
 {/each}
