@@ -27,7 +27,7 @@
 
 <style>
 	.item {
-		margin-bottom: 40px;
+		margin-bottom: 52px;
 		display: flex;
 	}
 	.item:hover {
@@ -52,6 +52,20 @@
 	}
 	.description {
 		margin-bottom: 12px;
+	}
+
+	@media (max-width: 480px) {
+		.item {
+			display: block;
+		}
+		.image-container {
+			height: 400px;
+			width: 100%;
+		}
+		.image {
+			width: 100%;
+			height: 400px;
+		}
 	}
 </style>
 

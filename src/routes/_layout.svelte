@@ -9,9 +9,14 @@
 		position: relative;
 		max-width: 1280px;
 		background-color: white;
-		padding: 2em;
 		margin: 0 auto;
 		box-sizing: border-box;
+	}
+
+	@media (max-width: 480px) {
+		main {
+			font-size: 1.2em;
+		}
 	}
 </style>
 
