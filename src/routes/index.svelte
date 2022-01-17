@@ -8,6 +8,10 @@
 		const module = await import('svelte-lazy');
 		Lazy = module.default;
 	});
+
+	function itemClickHandler(url) {
+		window.open(url, "new_blank")
+	}
 </script>
 
 <script context="module">
@@ -22,10 +26,32 @@
 </script>
 
 <style>
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
+	.item {
+		margin-bottom: 40px;
+		display: flex;
+	}
+	.item:hover {
+		cursor: pointer;
+		box-shadow: -3px 3px 3px 3px #EEE;
+	}
+
+	.image-container {
+		width: 400px;
+	}
+	.image {
+		width: 400px;
+		height: 400px;
+		display: block;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.content {
+		padding: 12px;
+		flex: 400px;
+	}
+	.description {
+		margin-bottom: 12px;
 	}
 </style>
 
@@ -34,16 +60,20 @@
 </svelte:head>
 
 {#each places as place}
-<div>
-	<svelte:component this={Lazy} height={300}>
-		<img src={place.images[0]} alt="">
-	</svelte:component>
-	<h2>{place.title}</h2>
-	<div>{place.description}</div>
-	<div>{place.address}</div>
-	<div>{place.price} {place.currency}</div>
-	<a href={place.url} target="_blank">ver</a>
-	<div>{place.source}</div>
-	<div>{place.createdAt}</div>
+<div class="item"
+	on:click={() => itemClickHandler(place.url)}
+	data-source={place.source}
+	data-date={place.createdAt}>
+	<div class="image-container">
+		<svelte:component this={Lazy} height={300}>
+			<div class="image" style={`background-image: url(${place.images[0]})`}></div>
+		</svelte:component>
+	</div>
+	<div class="content">
+		<h2>{place.title}</h2>
+		<div class="description">{place.description}</div>
+		<h3>{place.address}</h3>
+		<div>{new Intl.NumberFormat().format(place.price)} {place.currency}</div>
+	</div>
 </div>
 {/each}
