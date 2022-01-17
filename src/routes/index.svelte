@@ -1,5 +1,13 @@
 <script>
+	import { onMount } from 'svelte';
+
 	export let places
+	let Lazy;
+
+	onMount(async () => {
+		const module = await import('svelte-lazy');
+		Lazy = module.default;
+	});
 </script>
 
 <script context="module">
@@ -53,7 +61,9 @@
 
 {#each places as place}
 <div>
-	<img src={place.images[0]} alt="">
+	<svelte:component this={Lazy} height={300}>
+		<img src={place.images[0]} alt="">
+	</svelte:component>
 	<h2>{place.title}</h2>
 	<div>{place.description}</div>
 	<div>{place.address}</div>
