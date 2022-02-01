@@ -1,13 +1,7 @@
 <script>
-	import { onMount } from 'svelte';
+	import Lazy from 'svelte-lazy';
 
 	export let places
-	let Lazy;
-
-	onMount(async () => {
-		const module = await import('svelte-lazy');
-		Lazy = module.default;
-	});
 
 	function itemClickHandler(url) {
 		window.open(url, "new_blank")
@@ -93,9 +87,9 @@
 	data-source={place.source}
 	data-date={place.createdAt}>
 	<div class="image-container">
-		<svelte:component this={Lazy} height={300}>
+		<Lazy height={300}>
 			<div class="image" style={`background-image: url(${place.images[0]})`}></div>
-		</svelte:component>
+		</Lazy>
 	</div>
 	<div class="content">
 		<h2>{place.title}</h2>
@@ -105,3 +99,16 @@
 	</div>
 </div>
 {/each}
+
+<footer>
+	Proyecto en Colaboración con: <br />
+	<a href="https://www.garitacenter.com/">Reporte de Garitas | Linea Tijuana / San Ysidro - Otay</a>
+	<br />
+	<a href="https://www.feedmetj.com/">¿Qué comer en Tijuana?</a>
+	<br />
+	<a href="http://www.playami.com">¿Qué comer en Playas de Tijuana?</a>
+	<br />
+	<a href="https://www.noticiasmexico.org/">Últimas Noticias de México</a>
+	<br />
+	<a href="https://www.mintitmedia.com/">Desarrollo Web en Tijuana</a>
+</footer>
