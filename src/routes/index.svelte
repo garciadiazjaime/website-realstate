@@ -4,10 +4,6 @@
 	export let places
 	const title = 'Casas en Venta en Tijuana - Baja California'
 	const description = 'Encuentra casas en venta en Tijuana, Baja California. La Casa Ideal para Comprar te espera.'
-
-	function itemClickHandler(url) {
-		window.open(url, "new_blank")
-	}
 </script>
 
 <script context="module">
