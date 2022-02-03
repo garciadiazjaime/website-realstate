@@ -2,6 +2,8 @@
 	import Lazy from 'svelte-lazy';
 
 	export let places
+	const title = 'Casas en Venta en Tijuana - Baja California'
+	const description = 'Encuentra casas en venta en Tijuana, Baja California. La Casa Ideal para Comprar te espera.'
 
 	function itemClickHandler(url) {
 		window.open(url, "new_blank")
@@ -24,25 +26,18 @@
 		margin-bottom: 52px;
 		display: flex;
 	}
-	.item:hover {
-		cursor: pointer;
-		box-shadow: -3px 3px 3px 3px #EEE;
-	}
 
 	.image-container {
 		width: 400px;
 		overflow: hidden;
 	}
-	.image {
+	img {
 		width: 400px;
 		height: 400px;
 		display: block;
 		background-repeat: no-repeat;
 		background-size: cover;
 		transition: transform .2s;
-	}
-	.image:hover {
-		transform: scale(1.1);
 	}
 
 	.content {
@@ -51,6 +46,10 @@
 	}
 	.description {
 		margin-bottom: 12px;
+	}
+
+	a {
+		text-decoration: none;
 	}
 
 	@media (max-width: 480px) {
@@ -68,7 +67,7 @@
 			height: 400px;
 			width: 100%;
 		}
-		.image {
+		img {
 			width: 100%;
 			height: 400px;
 		}
@@ -76,31 +75,41 @@
 </style>
 
 <svelte:head>
-	<title>Real State | Tijuana</title>
+	<title>{title}</title>
+	<meta property="og:title" content={title}>
+	<meta property="og:description" content={description}>
+	<meta property="og:image" content="https://www.comprarcasatijuana.com/banner.png">
+	<meta property="og:url" content="https://www.comprarcasatijuana.com/">
+	<meta name="description" content={description}>
+	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
-<h1>Comprar Casa en Tijuana</h1>
+<h1>{title}</h1>
 
 {#each places as place}
 <div class="item"
-	on:click={() => itemClickHandler(place.url)}
 	data-source={place.source}
 	data-date={place.createdAt}>
 	<div class="image-container">
 		<Lazy height={300}>
-			<div class="image" style={`background-image: url(${place.images[0]})`}></div>
+			<img src={place.images[0]} alt={place.title}>
 		</Lazy>
 	</div>
 	<div class="content">
 		<h2>{place.title}</h2>
 		<div class="description">{place.description}</div>
-		<h3>{place.address}</h3>
 		<div>{new Intl.NumberFormat().format(place.price)} {place.currency}</div>
+		<p>
+			<a href={place.url} target="_blank" rel="nofollow noreferrer">Más información sobre Casa en Venta</a>
+		</p>
 	</div>
 </div>
 {/each}
 
 <footer>
+	<p>
+		{description}
+	</p>
 	Proyecto en Colaboración con: <br />
 	<a href="https://www.garitacenter.com/">Reporte de Garitas | Linea Tijuana / San Ysidro - Otay</a>
 	<br />
