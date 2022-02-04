@@ -6,12 +6,12 @@ const apiURL = process.env.API_URL
 
 function getUniquePlaces(data) {
   const places = data.reduce((accu, place) => {
-    const descriptionFound = accu.find(item => item.description === place.description)
+    const placeFound = accu.find(item => item.description === place.description)
 
-    if (!descriptionFound) {
+    if (!placeFound) {
       accu.push(place)
     } else {
-      console.log(`description repited:${accu._id}:${place._id}`)
+      console.log(`description repited:${placeFound._id}:${place._id}`)
     }
 
     return accu
