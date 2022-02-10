@@ -2,7 +2,7 @@
 	import Lazy from 'svelte-lazy';
 
 	export let places
-	const title = 'Casas en Venta en Tijuana - Baja California'
+	const title = 'Casas en Venta en Tijuana - Comprar Casa.'
 	const description = 'Encuentra casas en venta en Tijuana, Baja California. La Casa Ideal para Comprar te espera.'
 </script>
 
@@ -20,28 +20,20 @@
 <style>
 	.item {
 		margin-bottom: 52px;
-		display: flex;
 	}
 
 	.image-container {
-		width: 400px;
-		overflow: hidden;
+		margin: 0 auto;
+		width: 100%;
 	}
 	img {
-		width: 400px;
-		height: 400px;
-		display: block;
-		background-repeat: no-repeat;
-		background-size: cover;
-		transition: transform .2s;
+		width: 100%;
+		height: 300px;
+		object-fit: contain;
 	}
 
 	.content {
 		padding: 12px;
-		flex: 400px;
-	}
-	.description {
-		margin-bottom: 12px;
 	}
 
 	a {
@@ -50,22 +42,14 @@
 
 	@media (max-width: 480px) {
 		h1 {
-			padding: 230px 12px;
-			margin: 0;
+			padding: 222px 0;
 			background-color: #000;
 			color: #FFF;
 			text-align: center;
+			margin-bottom: 20px;
 		}
 		.item {
 			display: block;
-		}
-		.image-container {
-			height: 400px;
-			width: 100%;
-		}
-		img {
-			width: 100%;
-			height: 400px;
 		}
 	}
 </style>
@@ -86,23 +70,30 @@
 <div class="item"
 	data-source={place.source}
 	data-date={place.createdAt}>
+	<div class="content">
+		<h2>{place.title}</h2>
+	</div>
 	<div class="image-container">
 		<Lazy height={300}>
 			<img src={place.images[0]} alt={place.title}>
 		</Lazy>
 	</div>
 	<div class="content">
-		<h2>{place.title}</h2>
 		<div class="description">{place.description}</div>
 		<div>{new Intl.NumberFormat().format(place.price)} {place.currency}</div>
 		<p>
-			<a href={place.url} target="_blank" rel="nofollow noreferrer">Más información sobre Casa en Venta</a>
+			<a href={place.url} target="_blank" rel="nofollow noreferrer">Casa en Venta en {place.source}</a>
 		</p>
 	</div>
 </div>
 {/each}
 
 <footer>
+	<p>
+		Comprar Casas en Tijuana, tiene como objectivo dar a conocer las últimas publicaciones que los diferentes
+		sitios de bienes y raices han subido a sus sitios.
+		La intención es tenerte informado sobre Casas en Venta en Tijuana a través de una plataforma rápida y amigable.
+	</p>
 	<p>
 		{description}
 	</p>
@@ -116,4 +107,6 @@
 	<a href="https://www.noticiasmexico.org/">Últimas Noticias de México</a>
 	<br />
 	<a href="https://www.mintitmedia.com/">Desarrollo Web en Tijuana</a>
+	<br />
+	<a href="http://www.larutadelvinoensenada.com/">La Ruta del Vino Ensenada</a>
 </footer>

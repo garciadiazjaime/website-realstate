@@ -51,5 +51,6 @@
 <nav>
 	<ul>
 		<li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">casas</a></li>
+		<li><a aria-current="{segment === 'nosotros' ? 'page' : undefined}" href="nosotros">nosotros</a></li>
 	</ul>
 </nav>

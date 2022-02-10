@@ -6,7 +6,7 @@ const apiURL = process.env.API_URL
 
 function getUniquePlaces(data) {
   const places = data.reduce((accu, place) => {
-    const placeFound = accu.find(item => item.description === place.description)
+    const placeFound = accu.find(item => item.description === place.description || item.title === place.title)
 
     if (!placeFound) {
       accu.push(place)
@@ -17,7 +17,7 @@ function getUniquePlaces(data) {
     return accu
   }, [])
 
-  return places
+  return places.slice(0, 40)
 }
 
 async function getPlaces() {
