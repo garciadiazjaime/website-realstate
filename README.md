@@ -8,7 +8,11 @@
 
 ### Feedmetj
 
-[Qué comer en Tijuana?](https://www.feedmetj.com/)
+[Restaurantes en Tijuana](https://www.feedmetj.com/)
+
+### Playami
+
+[Restaurantes en Playas de Tijuana?](http://www.playami.com/)
 
 ### Noticias México
 
@@ -17,10 +21,6 @@
 ### El Valle
 
 [La Ruta del Vino Ensenada](http://www.larutadelvinoensenada.com/)
-
-### Playami
-
-[Qué comer en Playas de Tijuana?](http://www.playami.com/)
 
 ### Mint IT Media
 
