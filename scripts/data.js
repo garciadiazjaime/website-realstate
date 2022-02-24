@@ -17,7 +17,7 @@ function getUniquePlaces(data) {
     return accu
   }, [])
 
-  return places.slice(0, 40)
+  return places.slice(0, 27)
 }
 
 async function getPlaces() {

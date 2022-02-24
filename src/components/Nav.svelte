@@ -1,5 +1,14 @@
 <script>
+	import { publish, subscribe } from "../support/events"
 	export let segment;
+
+	subscribe('update_menu', (path) => {
+		segment = path
+	})
+
+	function clickHandler() {
+		publish('update_menu', this.attributes.href.value.split('/').pop())
+	}
 </script>
 
 <style>
@@ -50,7 +59,11 @@
 
 <nav>
 	<ul>
-		<li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">casas</a></li>
-		<li><a aria-current="{segment === 'nosotros' ? 'page' : undefined}" href="nosotros">nosotros</a></li>
+		<li><a aria-current="{segment === undefined ? 'page' : undefined}" href="." on:click={clickHandler}>Casas</a></li>
+		<li><a aria-current="{segment === 'playas' ? 'page' : undefined}" href="casas/playas" on:click={clickHandler}>Playas</a></li>
+		<li><a aria-current="{segment === 'centro' ? 'page' : undefined}" href="casas/centro" on:click={clickHandler}>Centro</a></li>
+		<li><a aria-current="{segment === 'rio' ? 'page' : undefined}" href="casas/rio" on:click={clickHandler}>Zona Rio</a></li>
+		<li><a aria-current="{segment === 'otay' ? 'page' : undefined}" href="casas/otay" on:click={clickHandler}>Otay</a></li>
+		<li><a aria-current="{segment === 'nosotros' ? 'page' : undefined}" href="nosotros" on:click={clickHandler}>Nosotros</a></li>
 	</ul>
 </nav>

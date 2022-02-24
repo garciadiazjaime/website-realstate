@@ -8,8 +8,9 @@
 
 <script context="module">
 	export async function preload() {
-		const response = await this.fetch('/places.json');
-		const places = await response.json();
+		const url = `process.env.API_URL/places`
+		const response = await this.fetch(url)
+		const places = await response.json()
 
 		return {
 			places
@@ -66,12 +67,12 @@
 
 <h1>{title}</h1>
 
-{#each places as place}
+{#each places as place, index}
 <div class="item"
 	data-source={place.source}
 	data-date={place.createdAt}>
 	<div class="content">
-		<h2>{place.title}</h2>
+		<h2>{index + 1} - <a href={place.url} target="_blank" rel="nofollow noreferrer">{place.title}</a></h2>
 	</div>
 	<div class="image-container">
 		<Lazy height={300}>
@@ -82,31 +83,12 @@
 		<div class="description">{place.description}</div>
 		<div>{new Intl.NumberFormat().format(place.price)} {place.currency}</div>
 		<p>
-			<a href={place.url} target="_blank" rel="nofollow noreferrer">Casa en Venta en {place.source}</a>
+			Casa en Venta en {place.source}
 		</p>
 	</div>
 </div>
 {/each}
 
-<footer>
-	<p>
-		Comprar Casas en Tijuana, tiene como objectivo dar a conocer las últimas publicaciones que los diferentes
-		sitios de bienes y raices han subido a sus sitios.
-		La intención es tenerte informado sobre Casas en Venta en Tijuana a través de una plataforma rápida y amigable.
-	</p>
-	<p>
-		{description}
-	</p>
-	Proyecto en Colaboración con: <br />
-	<a href="https://www.garitacenter.com/">Reporte de Garitas | Linea Tijuana / San Ysidro - Otay</a>
-	<br />
-	<a href="https://www.feedmetj.com/">¿Qué comer en Tijuana?</a>
-	<br />
-	<a href="http://www.playami.com">¿Qué comer en Playas de Tijuana?</a>
-	<br />
-	<a href="https://www.noticiasmexico.org/">Últimas Noticias de México</a>
-	<br />
-	<a href="https://www.mintitmedia.com/">Desarrollo Web en Tijuana</a>
-	<br />
-	<a href="http://www.larutadelvinoensenada.com/">La Ruta del Vino Ensenada</a>
-</footer>
+<p>
+	{description}
+</p>
