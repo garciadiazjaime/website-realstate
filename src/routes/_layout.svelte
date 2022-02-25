@@ -35,6 +35,13 @@
 		La intención es tenerte informado sobre Casas en Venta en Tijuana a través de una plataforma rápida y amigable.
 	</p>
 
+	<div>
+		Síguenos en
+		<ul>
+			<li><a href="https://www.instagram.com/comprarcasatijuana/" target="_blank" title="Casas en Venta en Tijuana - Baja California">Instagram</a></li>
+		</ul>
+	</div>
+
 	Proyecto en Colaboración con: <br />
 	<a href="https://www.garitacenter.com/">Reporte de Garitas | Linea Tijuana / San Ysidro - Otay</a>
 	<br />
