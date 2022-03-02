@@ -2,7 +2,8 @@
 	import Lazy from 'svelte-lazy';
 
 	export let places
-	const title = 'Casas en Venta en Tijuana - Comprar Casa.'
+
+	const title = 'Casas en Venta en Tijuana | Encuentra y Compra tu Casa.'
 	const description = 'Encuentra casas en venta en Tijuana, Baja California. La Casa Ideal para Comprar te espera.'
 </script>
 
@@ -19,39 +20,52 @@
 </script>
 
 <style>
-	.item {
-		margin-bottom: 52px;
+	ul {
+		padding: 0;
+		list-style-type: none;
 	}
 
-	.image-container {
-		margin: 0 auto;
-		width: 100%;
+	li {
+		margin: 40px 0;
 	}
+
 	img {
+		height: 454px;
 		width: 100%;
-		height: 300px;
-		object-fit: contain;
+		object-fit: cover;
 	}
 
-	.content {
-		padding: 12px;
+	.cover {
+		padding: 220px 0;
+		background-color: #f77670;
+		color: white;
+		text-align: center;	
+	}
+
+	h2, h3, p {
+		padding: 0 12px;
 	}
 
 	a {
 		text-decoration: none;
 	}
 
-	@media (max-width: 480px) {
-		h1 {
-			padding: 222px 0;
-			background-color: #000;
-			color: #FFF;
-			text-align: center;
-			margin-bottom: 20px;
-		}
-		.item {
-			display: block;
-		}
+	small {
+		height: 24px;
+		width: 24px;
+		background-color: #f77670;
+		color: white;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 12px;
+		font-weight: bold;
+		margin-left: 12px;
+	}
+
+	p {
+		word-break: break-word;
 	}
 </style>
 
@@ -62,32 +76,28 @@
 	<meta property="og:image" content="https://www.comprarcasatijuana.com/banner.webp">
 	<meta property="og:url" content="https://www.comprarcasatijuana.com/">
 	<meta name="description" content={description}>
-	<link href="https://www.google-analytics.com" rel="dns-prefetch">
+	<link rel="apple-touch-icon" href="/logo-192.webp" />
 </svelte:head>
 
-<h1>{title}</h1>
+<div class="cover">
+	<h1>Casas en Venta en Tijuana</h1>
+	<h2>Compra tu Casa</h2>
+</div>
 
-{#each places as place, index}
-<div class="item"
-	data-source={place.source}
-	data-date={place.createdAt}>
-	<div class="content">
-		<h2>{index + 1} - <a href={place.url} target="_blank" rel="nofollow noreferrer">{place.title}</a></h2>
-	</div>
-	<div class="image-container">
+<ul>
+	{#each places as place, index}
+	<li>
+		<small>{index+1}</small>
+		<h2><a href={place.url} target="_blank" rel="nofollow noreferrer">{place.title}</a></h2>
+		<h3>Casa en Venta en {place.source}</h3>
 		<Lazy height={300}>
 			<img src={place.images[0]} alt={place.title}>
 		</Lazy>
-	</div>
-	<div class="content">
-		<div class="description">{place.description}</div>
-		<div>{new Intl.NumberFormat().format(place.price)} {place.currency}</div>
-		<p>
-			Casa en Venta en {place.source}
-		</p>
-	</div>
-</div>
-{/each}
+		<p>{place.description}</p>
+		<p>{new Intl.NumberFormat().format(place.price)} {place.currency}</p>
+	</li>
+	{/each}
+</ul>
 
 <p>
 	{description}
