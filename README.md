@@ -12,7 +12,7 @@
 
 ### Playami
 
-[Restaurantes en Playas de Tijuana?](http://www.playami.com/)
+[Restaurantes en Playas de Tijuana?](https://www.playami.com/)
 
 ### Noticias México
 
@@ -20,7 +20,7 @@
 
 ### El Valle
 
-[La Ruta del Vino Ensenada](http://www.larutadelvinoensenada.com/)
+[La Ruta del Vino Ensenada](https://www.larutadelvinoensenada.com/)
 
 ### Mint IT Media
 
