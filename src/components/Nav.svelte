@@ -65,5 +65,7 @@
 		<li><a aria-current="{segment === 'rio' ? 'page' : undefined}" href="casas/rio" on:click={clickHandler}>Zona Rio</a></li>
 		<li><a aria-current="{segment === 'otay' ? 'page' : undefined}" href="casas/otay" on:click={clickHandler}>Otay</a></li>
 		<li><a aria-current="{segment === 'cacho' ? 'page' : undefined}" href="casas/cacho" on:click={clickHandler}>Cacho</a></li>
+		<li><a aria-current="{segment === 'lago' ? 'page' : undefined}" href="casas/lago" on:click={clickHandler}>El Lago</a></li>
+		<li><a aria-current="{segment === 'depa' ? 'page' : undefined}" href="casas/depa" on:click={clickHandler}>Departamentos</a></li>
 	</ul>
 </nav>
